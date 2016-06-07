@@ -18,7 +18,7 @@ module OmniAuth
           :expires_in => access_token.expires_in,
           :expires_at => Time.at(access_token.expires_at),
           :refresh_token => access_token.refresh_token,
-          :name => accounts.first['description'],
+          :name => name,
         }
       end
 
@@ -26,6 +26,10 @@ module OmniAuth
         {
           :accounts => accounts,
         }
+      end
+
+      def name
+        accounts.first ? accounts.first['description'] : ''
       end
 
       def accounts
